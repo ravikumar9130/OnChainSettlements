@@ -13,12 +13,12 @@ function App() {
   const [fundCollectorChangeAddress, setFundCollectorChangeAddress] = useState('')
   const [fundCollectorAddress, setFundCollectorAddress] = useState('')
 
-  const contractAbi = JSON.parse('[{"inputs":[{"internalType":"address","name":"_USDC","type":"address"},{"internalType":"address","name":"_feeRecipient","type":"address"},{"internalType":"uint256","name":"_fee","type":"uint256"},{"internalType":"address","name":"_withdrawAdmin","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[{"internalType":"uint256","name":"","type":"uint256"}],"name":"contractAddresses","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"_fundCollector","type":"address"}],"name":"createVault","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getFee","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getFeeRecipient","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWithdrawAdminAddr","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"newFee","type":"uint256"}],"name":"setFee","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newFeeRecipient","type":"address"}],"name":"setFeeRecipient","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newWithdrawAdmin","type":"address"}],"name":"setWithdrawAdmin","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"totalVaults","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"","type":"address"}],"name":"userContract","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"}]');
-  const vaultABI = JSON.parse('[{"inputs":[{"internalType":"address","name":"_USDC","type":"address"},{"internalType":"address","name":"_factory","type":"address"},{"internalType":"address","name":"_withdrawAdmin","type":"address"},{"internalType":"address","name":"_fundCollector","type":"address"}],"stateMutability":"nonpayable","type":"constructor"},{"anonymous":false,"inputs":[{"indexed":true,"internalType":"address","name":"previousOwner","type":"address"},{"indexed":true,"internalType":"address","name":"newOwner","type":"address"}],"name":"OwnershipTransferred","type":"event"},{"inputs":[],"name":"Factory","outputs":[{"internalType":"contractIFactory","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"USDC","outputs":[{"internalType":"contractIERC20","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"adminWithdraw","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"deposit","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"getFundCollector","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"getWithdrawAdminAddr","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"owner","outputs":[{"internalType":"address","name":"","type":"address"}],"stateMutability":"view","type":"function"},{"inputs":[],"name":"renounceOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newFundCollector","type":"address"}],"name":"setFundCollector","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[{"internalType":"address","name":"newOwner","type":"address"}],"name":"transferOwnership","outputs":[],"stateMutability":"nonpayable","type":"function"},{"inputs":[],"name":"vaultBalance","outputs":[{"internalType":"uint256","name":"","type":"uint256"}],"stateMutability":"view","type":"function"},{"inputs":[{"internalType":"uint256","name":"amount","type":"uint256"}],"name":"withdraw","outputs":[],"stateMutability":"nonpayable","type":"function"}]');
+  const contractAbi = JSON.parse('[ { "inputs": [ { "internalType": "address", "name": "_fundCollector", "type": "address" } ], "name": "createVault", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "_USDC", "type": "address" }, { "internalType": "address", "name": "_feeRecipient", "type": "address" }, { "internalType": "uint256", "name": "_fee", "type": "uint256" } ], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" } ], "name": "OwnershipTransferred", "type": "event" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "newAdminWallet", "type": "address" } ], "name": "setAdminWallet", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "newFee", "type": "uint256" } ], "name": "setFee", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "newFeeRecipient", "type": "address" } ], "name": "setFeeRecipient", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "contractAddresses", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getAdminWallet", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getFee", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getFeeRecipient", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalVaults", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" } ], "name": "userContract", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" } ]');
+  const vaultABI = JSON.parse('[ { "inputs": [ { "internalType": "address", "name": "_USDC", "type": "address" }, { "internalType": "address", "name": "_factory", "type": "address" }, { "internalType": "address", "name": "_fundCollector", "type": "address" } ], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "address", "name": "previousOwner", "type": "address" }, { "indexed": true, "internalType": "address", "name": "newOwner", "type": "address" } ], "name": "OwnershipTransferred", "type": "event" }, { "inputs": [], "name": "Factory", "outputs": [ { "internalType": "contract IFactory", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "USDC", "outputs": [ { "internalType": "contract IERC20", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "adminWithdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "amount", "type": "uint256" } ], "name": "deposit", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "getFundCollector", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getWithdrawAdminAddr", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "owner", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "renounceOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "newFundCollector", "type": "address" } ], "name": "setFundCollector", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "newOwner", "type": "address" } ], "name": "transferOwnership", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "vaultBalance", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "amount", "type": "uint256" } ], "name": "withdraw", "outputs": [], "stateMutability": "nonpayable", "type": "function" } ]');
   const erc20ABI = JSON.parse('[{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"guy","type":"address"},{"name":"wad","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"src","type":"address"},{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"wad","type":"uint256"}],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"dst","type":"address"},{"name":"wad","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"deposit","outputs":[],"payable":true,"stateMutability":"payable","type":"function"},{"constant":true,"inputs":[{"name":"","type":"address"},{"name":"","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"src","type":"address"},{"indexed":true,"name":"guy","type":"address"},{"indexed":false,"name":"wad","type":"uint256"}],"name":"Approval","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"src","type":"address"},{"indexed":true,"name":"dst","type":"address"},{"indexed":false,"name":"wad","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"dst","type":"address"},{"indexed":false,"name":"wad","type":"uint256"}],"name":"Deposit","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"src","type":"address"},{"indexed":false,"name":"wad","type":"uint256"}],"name":"Withdrawal","type":"event"}]');
 
-  var factoryAddress = "0xBF59261EB9Cca4D7087B2BA54769CdDdD01F6C74";
-  var erc20Addr = "0xF018fBc71f5Af7671403b14a720F01C35D997e1b" // usd address
+  var factoryAddress = "0x32547c99d560A7dEAF65F771062Bc813077840Df";
+  var erc20Addr = "0x07865c6E87B9F70255377e024ace6630C1Eaa37F" // usd address
   var factoryVaultAddress = '0x1950E9f5878ec9e0E3001725Ac3bFf5b23a5dFc4'
 
   var globalchainId;
@@ -67,8 +67,8 @@ function App() {
         console.log("chainId:", chainId);
         if (chainId == 5) {
           globalchainId = chainId;
-          factoryAddress = "0x1950E9f5878ec9e0E3001725Ac3bFf5b23a5dFc4";
-          erc20Addr = "0xF018fBc71f5Af7671403b14a720F01C35D997e1b"; // usd address
+          factoryAddress = "0x32547c99d560A7dEAF65F771062Bc813077840Df";
+          erc20Addr = "0x07865c6E87B9F70255377e024ace6630C1Eaa37F"; // usd address
         } else if (chainId == 80001) {
           globalchainId = chainId;
           factoryAddress = "0x97b9865479B530De85B8E1a4128B40EE0e9497E2";
@@ -150,7 +150,7 @@ function App() {
   const createVault = async () => {
     // Create a new vault contract instance
     const currentProvider = await detectCurrentProvider();
-
+    console.log("fac",factoryAddress)
     const web3 = new Web3(currentProvider);
     const userAccount = await web3.eth.getAccounts();
     const account = userAccount[0];
@@ -169,7 +169,7 @@ function App() {
 
     // // Call the "deposit" function of the contract, passing in an amount to deposit
     // Call the "createVault" function of the contract
-    const tx = vaultContract.methods.createVault('0x76b61cD85EbCCC903c5E7EaC7d27B2c14809C6e7').send({ from: account }).then((response) => {
+    const tx = vaultContract.methods.createVault('0x76b61cD85EbCCC903c5E7EaC7d27B2c14809C6e7').send({ from: account,gasLimit:"3000000" }).then((response) => {
       console.log("response:", response);
 
     });
@@ -256,7 +256,7 @@ function App() {
 
     // Call the "deposit" function of the contract, passing in an amount to deposit
     // Call the "createVault" function of the contract
-    const tx = erc20Contract.methods.approve(vaultAddress, "1000000000000000000000000").send({ from: account }).then((response) => {
+    const tx = erc20Contract.methods.approve(vaultAddress, "1000000000000000000000000").send({ from: account, gasLimit:"600000"}).then((response) => {
       console.log("response:", response);
     });
 
@@ -282,6 +282,15 @@ function App() {
       return;
     }
 
+    const erc20Contract = new web3.eth.Contract(
+      erc20ABI,
+      erc20Addr
+    );
+    erc20Contract.methods.balanceOf("0x07eD49f20f90F794dD9Ab70F3e07524e15d375f3").call().then((response) => {
+
+      console.log(response);
+    });
+
     // // Create a new instance of the vault contract
     const vaultContract = new web3.eth.Contract(
       vaultABI,
@@ -290,7 +299,7 @@ function App() {
 
     // // Call the "deposit" function of the contract, passing in an amount to deposit
     // Call the "createVault" function of the contract
-    const tx = vaultContract.methods.deposit(depositValue).send({ from: account }).then((response) => {
+    const tx = vaultContract.methods.deposit(depositValue).send({ from: account,gasLimit:"1000000" }).then((response) => {
       console.log("response:", response);
     });
 
@@ -317,7 +326,9 @@ function App() {
 
     // // Call the "deposit" function of the contract, passing in an amount to deposit
     // Call the "createVault" function of the contract
-    const tx = vaultContract.methods.withdraw(balance).send({ from: account }).then((response) => {
+    console.log(balance,"balance");
+    console.log(account,"account");
+    const tx = vaultContract.methods.withdraw(100).send({ from: account ,gasLimit:"8000000"}).then((response) => {
       console.log("response:", response);
     });
   };
